@@ -123,3 +123,34 @@ def get_event(event_id):
         ),
         200,
     )
+
+
+@events_bp.get("/mine")
+@current_user_required
+def get_my_events(user):
+    events = EventService.get_for_organizer(user)
+
+    return jsonify({
+        "success": True,
+        "count": len(events),
+        "data": [
+            {
+                "id": str(event.id),
+                "title": event.title,
+                "slug": event.slug,
+                "banner_image": event.banner_image,
+                "venue": event.venue,
+                "city": event.city,
+                "country": event.country,
+                "start_date": event.start_date.isoformat(),
+                "end_date": event.end_date.isoformat(),
+                "capacity": event.capacity,
+                "tickets_remaining": event.tickets_remaining,
+                "featured": event.featured,
+                "status": event.status.value,
+                "created_at": event.created_at.isoformat(),
+                "ticket_types_count": len(event.ticket_types),
+            }
+            for event in events
+        ],
+    }), 200

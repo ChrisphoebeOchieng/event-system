@@ -47,3 +47,12 @@ class EventService:
         return Event.query.filter_by(
             id=event_id
         ).first()
+
+    @staticmethod
+    def get_for_organizer(user):
+        return (
+            Event.query
+            .filter_by(organizer_id=user.id)
+            .order_by(Event.created_at.desc())
+            .all()
+        )
