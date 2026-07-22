@@ -33,3 +33,17 @@ class EventService:
         db.session.commit()
 
         return event
+
+    @staticmethod
+    def get_all():
+        return (
+            Event.query
+            .order_by(Event.start_date.asc())
+            .all()
+        )
+
+    @staticmethod
+    def get_by_id(event_id):
+        return Event.query.filter_by(
+            id=event_id
+        ).first()
