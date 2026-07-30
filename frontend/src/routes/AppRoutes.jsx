@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import ProtectedRoute from "../components/ProtectedRoute";
 import Checkout from "../pages/Checkout";
 import CreateEvent from "../pages/CreateEvent";
 import CreateTicketTypes from "../pages/CreateTicketTypes";
@@ -7,9 +8,10 @@ import Dashboard from "../pages/Dashboard";
 import EventDetails from "../pages/EventDetails";
 import Events from "../pages/Events";
 import Home from "../pages/Home";
-import MyEvents from "../pages/MyEvents";
 import Login from "../pages/Login";
+import MyEvents from "../pages/MyEvents";
 import Register from "../pages/Register";
+import Unauthorized from "../pages/Unauthorized";
 
 function AppRoutes() {
   return (
@@ -21,15 +23,42 @@ function AppRoutes() {
         <Route path="/checkout/:bookingId" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-<Route path="/dashboard/events" element={<MyEvents />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["organizer", "admin"]}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard/events"
+          element={
+            <ProtectedRoute allowedRoles={["organizer", "admin"]}>
+              <MyEvents />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/dashboard/events/create"
-          element={<CreateEvent />}
+          element={
+            <ProtectedRoute allowedRoles={["organizer", "admin"]}>
+              <CreateEvent />
+            </ProtectedRoute>
+          }
         />
+
         <Route
           path="/dashboard/events/:eventId/tickets"
-          element={<CreateTicketTypes />}
+          element={
+            <ProtectedRoute allowedRoles={["organizer", "admin"]}>
+              <CreateTicketTypes />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </BrowserRouter>
