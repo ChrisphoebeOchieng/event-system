@@ -41,7 +41,17 @@ function Login() {
       localStorage.setItem("refresh_token", refresh_token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      const redirectPath = searchParams.get("redirect") || "/dashboard";
+      const requestedRedirect = searchParams.get("redirect");
+
+      const defaultRedirects = {
+        admin: "/dashboard",
+        organizer: "/dashboard",
+        vendor: "/vendor",
+        attendee: "/events",
+      };
+
+      const redirectPath =
+        requestedRedirect || defaultRedirects[user.role] || "/events";
       const ticketId = searchParams.get("ticket");
       const quantity = searchParams.get("quantity");
 

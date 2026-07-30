@@ -5,6 +5,7 @@ import Checkout from "../pages/Checkout";
 import CreateEvent from "../pages/CreateEvent";
 import CreateTicketTypes from "../pages/CreateTicketTypes";
 import Dashboard from "../pages/Dashboard";
+import EditEvent from "../pages/EditEvent";
 import EventDetails from "../pages/EventDetails";
 import Events from "../pages/Events";
 import Home from "../pages/Home";
@@ -48,6 +49,16 @@ function AppRoutes() {
           element={
             <ProtectedRoute allowedRoles={["organizer", "admin"]}>
               <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/dashboard/events/:eventId/edit"
+          element={
+            <ProtectedRoute allowedRoles={["organizer", "admin"]}>
+              <EditEvent />
             </ProtectedRoute>
           }
         />

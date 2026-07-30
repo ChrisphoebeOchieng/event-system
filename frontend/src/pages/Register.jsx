@@ -32,6 +32,7 @@ function Register() {
       email: "",
       password: "",
       confirm_password: "",
+      role: "attendee",
     },
   });
 
@@ -47,6 +48,7 @@ function Register() {
         username: values.username,
         email: values.email,
         password: values.password,
+        role: values.role,
       });
 
       navigate("/login", {
@@ -175,6 +177,27 @@ function Register() {
               {errors.username.message}
             </span>
           )}
+        </div>
+
+
+        <div className="form-group">
+          <label htmlFor="role">Account type</label>
+
+          <select
+            id="role"
+            {...register("role", {
+              required: "Select an account type.",
+            })}
+          >
+            <option value="attendee">Attendee</option>
+            <option value="organizer">Event organizer</option>
+            <option value="vendor">Food or drink vendor</option>
+          </select>
+
+          <small className="field-help">
+            Choose how you plan to use the platform. Administrator accounts
+            are created internally.
+          </small>
         </div>
 
         <div className="form-group">

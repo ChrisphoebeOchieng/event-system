@@ -25,6 +25,13 @@ class RegisterSchema(Schema):
         validate=validate.Length(min=8),
     )
 
+    role = fields.Str(
+        required=True,
+        validate=validate.OneOf(
+            ["attendee", "organizer", "vendor"]
+        ),
+    )
+
     @validates("password")
     def validate_password(self, value, **kwargs):
         if not any(char.isupper() for char in value):

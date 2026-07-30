@@ -1,7 +1,7 @@
 from flask_jwt_extended import create_access_token, create_refresh_token
 
 from app.database import db
-from app.models.user import User
+from app.models.user import AccountStatus, User, UserRole
 
 
 class AuthService:
@@ -17,11 +17,24 @@ class AuthService:
         if User.query.filter_by(username=username).first():
             raise ValueError("Username already exists.")
 
+        allowed_roles = {
+            "attendee": UserRole.ATTENDEE,
+            "organizer": UserRole.ORGANIZER,
+            "vendor": UserRole.VENDOR,
+        }
+
+        role = allowed_roles.get(data["role"])
+
+        if not role:
+            raise ValueError("Invalid account role.")
+
         user = User(
             first_name=data["first_name"].strip(),
             last_name=data["last_name"].strip(),
             username=username,
             email=email,
+            role=role,
+            status=AccountStatus.ACTIVE,
         )
 
         user.set_password(data["password"])

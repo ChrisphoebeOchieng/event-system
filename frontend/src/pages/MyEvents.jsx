@@ -2,6 +2,7 @@ import {
   CalendarDays,
   Eye,
   MapPin,
+  Pencil,
   Plus,
   Send,
   TicketCheck,
@@ -235,6 +236,15 @@ function MyEvents() {
                     >
                       <Eye size={16} />
                       View
+                    </Link>
+
+
+                    <Link
+                      to={`/dashboard/events/${event.id}/edit`}
+                      className="button button-secondary"
+                    >
+                      <Pencil size={16} />
+                      Edit
                     </Link>
 
                     <Link
