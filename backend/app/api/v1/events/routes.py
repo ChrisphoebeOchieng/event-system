@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 
-from app.api.v1.auth.decorators import current_user_required
+from app.api.v1.auth.decorators import organizer_required
 from app.api.v1.events.schemas import CreateEventSchema
 from app.api.v1.events.service import EventService
 
@@ -11,7 +11,7 @@ create_schema = CreateEventSchema()
 
 
 @events_bp.post("/")
-@current_user_required
+@organizer_required
 def create_event(user):
     try:
         data = create_schema.load(request.get_json())
@@ -126,7 +126,7 @@ def get_event(event_id):
 
 
 @events_bp.get("/mine")
-@current_user_required
+@organizer_required
 def get_my_events(user):
     events = EventService.get_for_organizer(user)
 
@@ -157,7 +157,7 @@ def get_my_events(user):
 
 
 @events_bp.patch("/<uuid:event_id>/status")
-@current_user_required
+@organizer_required
 def update_event_status(user, event_id):
     from app.api.v1.events.schemas import UpdateEventStatusSchema
 
@@ -201,7 +201,7 @@ def update_event_status(user, event_id):
 
 
 @events_bp.delete("/<uuid:event_id>")
-@current_user_required
+@organizer_required
 def delete_event(user, event_id):
     try:
         EventService.delete(event_id, user)
@@ -224,7 +224,7 @@ def delete_event(user, event_id):
         }), 400
 
 @events_bp.patch("/<uuid:event_id>")
-@current_user_required
+@organizer_required
 def update_event(user, event_id):
     from app.api.v1.events.schemas import UpdateEventSchema
 

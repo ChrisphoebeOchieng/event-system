@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 
-from app.api.v1.auth.decorators import current_user_required
+from app.api.v1.auth.decorators import organizer_required
 from app.api.v1.ticket_types.schemas import CreateTicketTypeSchema
 from app.api.v1.ticket_types.service import TicketTypeService
 
@@ -36,7 +36,7 @@ def serialize_ticket_type(ticket_type):
 
 
 @ticket_types_bp.post("/events/<uuid:event_id>/ticket-types")
-@current_user_required
+@organizer_required
 def create_ticket_type(user, event_id):
     try:
         data = create_schema.load(request.get_json() or {})
