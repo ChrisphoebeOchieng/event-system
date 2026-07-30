@@ -15,11 +15,28 @@ def serialize_booking(booking):
         "id": str(booking.id),
         "booking_reference": booking.booking_reference,
         "event_id": str(booking.event_id),
+        "event_title": booking.event.title,
+        "event_date": booking.event.start_date.isoformat(),
+        "event_venue": booking.event.venue,
         "ticket_type_id": str(booking.ticket_type_id),
+        "ticket_name": booking.ticket_type.name,
         "quantity": booking.quantity,
         "unit_price": str(booking.unit_price),
         "total_amount": str(booking.total_amount),
         "status": booking.status.value,
+        "payment_status": (
+            booking.payment.status.value
+            if booking.payment
+            else None
+        ),
+        "refund": (
+            {
+                "id": str(booking.refund.id),
+                "status": booking.refund.status.value,
+            }
+            if booking.refund
+            else None
+        ),
         "created_at": booking.created_at.isoformat(),
     }
 
@@ -59,10 +76,10 @@ def create_booking(user, event_id):
 @bookings_bp.get("/bookings/me")
 @current_user_required
 def get_my_bookings(user):
-    bookings = (
-        user.bookings
-        if hasattr(user, "bookings")
-        else []
+    bookings = sorted(
+        user.bookings if hasattr(user, "bookings") else [],
+        key=lambda booking: booking.created_at,
+        reverse=True,
     )
 
     return jsonify({

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ProtectedRoute from "../components/ProtectedRoute";
+import AdminRefunds from "../pages/AdminRefunds";
 import AdminVendors from "../pages/AdminVendors";
 import Checkout from "../pages/Checkout";
 import CreateEvent from "../pages/CreateEvent";
@@ -11,7 +12,9 @@ import EventDetails from "../pages/EventDetails";
 import Events from "../pages/Events";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import MyBookings from "../pages/MyBookings";
 import MyEvents from "../pages/MyEvents";
+import MyRefunds from "../pages/MyRefunds";
 import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
 import VendorDashboard from "../pages/VendorDashboard";
@@ -27,6 +30,37 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute
+              allowedRoles={["attendee", "organizer", "vendor", "admin"]}
+            >
+              <MyBookings />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/refunds"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminRefunds />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/refunds"
+          element={
+            <ProtectedRoute
+              allowedRoles={["attendee", "organizer", "vendor", "admin"]}
+            >
+              <MyRefunds />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/admin/vendors"

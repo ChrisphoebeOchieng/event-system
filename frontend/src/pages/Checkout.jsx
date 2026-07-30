@@ -133,7 +133,7 @@ function Checkout() {
               <button
                 type="button"
                 className="button button-primary"
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/bookings")}
               >
                 View my bookings
               </button>
