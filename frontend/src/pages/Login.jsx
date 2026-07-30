@@ -44,10 +44,10 @@ function Login() {
       const requestedRedirect = searchParams.get("redirect");
 
       const defaultRedirects = {
-        admin: "/dashboard",
+        admin: "/admin/dashboard",
         organizer: "/dashboard",
         vendor: "/vendor",
-        attendee: "/events",
+        attendee: "/attendee/dashboard",
       };
 
       const redirectPath =

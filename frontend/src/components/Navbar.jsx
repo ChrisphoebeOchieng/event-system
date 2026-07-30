@@ -55,20 +55,36 @@ function Navbar() {
     { name: "Events", path: "/events" },
   ];
 
+  if (user?.role === "attendee") {
+    navigation.push({
+      name: "Dashboard",
+      path: "/attendee/dashboard",
+    });
+  }
+
   if (isAuthenticated) {
     navigation.push({
       name: "My Bookings",
       path: "/bookings",
     });
+
+    navigation.push({
+      name: "Payments",
+      path: "/payments",
+    });
   }
 
-  if (
-    user?.role === "organizer" ||
-    user?.role === "admin"
-  ) {
+  if (user?.role === "organizer") {
     navigation.push({
       name: "For Organizers",
       path: "/dashboard",
+    });
+  }
+
+  if (user?.role === "admin") {
+    navigation.push({
+      name: "Admin",
+      path: "/admin/dashboard",
     });
   }
 

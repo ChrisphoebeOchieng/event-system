@@ -69,3 +69,29 @@ def create_payment(user):
             "success": False,
             "message": str(error),
         }), 409
+
+
+@payments_bp.get("/payments/me")
+@current_user_required
+def get_my_payments(user):
+    payments = PaymentService.list_for_user(user)
+
+    return jsonify({
+        "success": True,
+        "count": len(payments),
+        "data": [
+            {
+                **serialize_payment(payment),
+                "booking_reference": (
+                    payment.booking.booking_reference
+                ),
+                "event_id": str(payment.booking.event_id),
+                "event_title": payment.booking.event.title,
+                "event_image": payment.booking.event.banner_image,
+                "ticket_name": payment.booking.ticket_type.name,
+                "quantity": payment.booking.quantity,
+                "booking_status": payment.booking.status.value,
+            }
+            for payment in payments
+        ],
+    }), 200

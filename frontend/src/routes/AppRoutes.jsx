@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ProtectedRoute from "../components/ProtectedRoute";
+import AdminDashboard from "../pages/AdminDashboard";
 import AdminRefunds from "../pages/AdminRefunds";
 import AdminVendors from "../pages/AdminVendors";
+import AttendeeDashboard from "../pages/AttendeeDashboard";
 import Checkout from "../pages/Checkout";
 import CreateEvent from "../pages/CreateEvent";
 import CreateTicketTypes from "../pages/CreateTicketTypes";
@@ -16,6 +18,7 @@ import MyBookings from "../pages/MyBookings";
 import MyEvents from "../pages/MyEvents";
 import MyRefunds from "../pages/MyRefunds";
 import Notifications from "../pages/Notifications";
+import PaymentHistory from "../pages/PaymentHistory";
 import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
 import VendorDashboard from "../pages/VendorDashboard";
@@ -31,6 +34,37 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/payments"
+          element={
+            <ProtectedRoute
+              allowedRoles={["attendee", "organizer", "vendor", "admin"]}
+            >
+              <PaymentHistory />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/attendee/dashboard"
+          element={
+            <ProtectedRoute
+              allowedRoles={["attendee", "admin"]}
+            >
+              <AttendeeDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/notifications"

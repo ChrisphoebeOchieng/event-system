@@ -12,6 +12,15 @@ from app.api.v1.notifications.service import NotificationService
 class PaymentService:
 
     @staticmethod
+    def list_for_user(user):
+        return (
+            Payment.query
+            .filter_by(user_id=user.id)
+            .order_by(Payment.created_at.desc())
+            .all()
+        )
+
+    @staticmethod
     def generate_reference():
         return "PAY-" + "".join(
             random.choices(

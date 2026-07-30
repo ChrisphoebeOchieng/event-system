@@ -69,13 +69,34 @@ def get_events():
                         "id": str(event.id),
                         "title": event.title,
                         "slug": event.slug,
+                        "description": event.description,
                         "venue": event.venue,
                         "city": event.city,
                         "country": event.country,
                         "start_date": event.start_date.isoformat(),
+                        "end_date": event.end_date.isoformat(),
                         "banner_image": event.banner_image,
                         "featured": event.featured,
                         "status": event.status.value,
+                        "category_id": str(event.category_id),
+                        "category_name": event.category.name,
+                        "capacity": event.capacity,
+                        "tickets_remaining": event.tickets_remaining,
+                        "created_at": event.created_at.isoformat(),
+                        "minimum_price": str(
+                            min(
+                                (
+                                    ticket.price
+                                    for ticket in event.ticket_types
+                                    if ticket.is_active
+                                ),
+                                default=0,
+                            )
+                        ),
+                        "tickets_sold": sum(
+                            ticket.sold_quantity
+                            for ticket in event.ticket_types
+                        ),
                     }
                     for event in events
                 ],
