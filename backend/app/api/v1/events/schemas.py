@@ -31,3 +31,12 @@ class CreateEventSchema(Schema):
     latitude = fields.Float(load_default=None)
 
     longitude = fields.Float(load_default=None)
+
+
+class UpdateEventStatusSchema(Schema):
+    status = fields.Str(
+        required=True,
+        validate=validate.OneOf(
+            ["draft", "published", "cancelled", "completed"]
+        ),
+    )

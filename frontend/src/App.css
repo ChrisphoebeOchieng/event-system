@@ -182,3 +182,250 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* Organizer events */
+
+.my-events-page {
+  padding-top: 72px;
+  padding-bottom: 96px;
+}
+
+.my-events-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.my-events-header h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.my-events-header p {
+  margin: 0;
+  color: var(--text-muted, #6b6570);
+}
+
+.my-events-alert {
+  margin-bottom: 24px;
+}
+
+.my-events-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.organizer-event-card {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.5fr);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(50, 17, 34, 0.08);
+}
+
+.organizer-event-image {
+  position: relative;
+  min-height: 280px;
+  background: #eee8eb;
+}
+
+.organizer-event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-status-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.status-draft {
+  color: #5d4d2b;
+  background: rgba(255, 240, 190, 0.94);
+}
+
+.status-published {
+  color: #145c3c;
+  background: rgba(218, 250, 233, 0.94);
+}
+
+.status-cancelled {
+  color: #842c38;
+  background: rgba(255, 225, 229, 0.94);
+}
+
+.status-completed {
+  color: #374151;
+  background: rgba(235, 237, 240, 0.94);
+}
+
+.organizer-event-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.organizer-event-heading h2 {
+  margin: 0 0 18px;
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+}
+
+.organizer-event-heading p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 8px 0;
+  color: #716873;
+}
+
+.organizer-event-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.organizer-event-stats div {
+  padding: 15px;
+  border-radius: 16px;
+  background: #faf7f8;
+  border: 1px solid rgba(73, 24, 48, 0.08);
+}
+
+.organizer-event-stats span {
+  display: block;
+  margin-bottom: 6px;
+  color: #7b7079;
+  font-size: 0.78rem;
+}
+
+.organizer-event-stats strong {
+  font-size: 1.18rem;
+}
+
+.organizer-event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.button-warning {
+  color: #7b4a00;
+  background: #fff2d8;
+  border: 1px solid #f2c879;
+}
+
+.button-danger {
+  color: #a22034;
+  background: #fff0f2;
+  border: 1px solid #eab3bc;
+}
+
+.button-warning:hover,
+.button-danger:hover {
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+.my-events-empty,
+.my-events-loading {
+  max-width: 680px;
+  margin: 70px auto;
+  padding: 56px 32px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 18px 55px rgba(50, 17, 34, 0.07);
+}
+
+.my-events-empty > span {
+  display: inline-grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 18px;
+  color: #6c193e;
+  background: #f7eaf0;
+  border-radius: 20px;
+}
+
+.my-events-empty h2,
+.my-events-loading h1 {
+  margin: 0 0 12px;
+}
+
+.my-events-empty p,
+.my-events-loading p {
+  max-width: 500px;
+  margin: 0 auto 24px;
+  color: #746a72;
+  line-height: 1.7;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 22px;
+  border: 4px solid #eadde3;
+  border-top-color: #6c193e;
+  border-radius: 50%;
+  animation: organizer-spin 0.8s linear infinite;
+}
+
+@keyframes organizer-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 820px) {
+  .my-events-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .organizer-event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .organizer-event-image {
+    min-height: 230px;
+  }
+}
+
+@media (max-width: 560px) {
+  .organizer-event-content {
+    padding: 22px;
+  }
+
+  .organizer-event-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .organizer-event-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}

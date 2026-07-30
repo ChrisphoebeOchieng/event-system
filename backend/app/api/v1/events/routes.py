@@ -154,3 +154,135 @@ def get_my_events(user):
             for event in events
         ],
     }), 200
+
+
+@events_bp.patch("/<uuid:event_id>/status")
+@current_user_required
+def update_event_status(user, event_id):
+    from app.api.v1.events.schemas import UpdateEventStatusSchema
+
+    schema = UpdateEventStatusSchema()
+
+    try:
+        data = schema.load(request.get_json() or {})
+
+        event = EventService.update_status(
+            event_id=event_id,
+            user=user,
+            status=data["status"],
+        )
+
+        return jsonify({
+            "success": True,
+            "message": f"Event status changed to {event.status.value}.",
+            "data": {
+                "id": str(event.id),
+                "status": event.status.value,
+            },
+        }), 200
+
+    except ValidationError as error:
+        return jsonify({
+            "success": False,
+            "errors": error.messages,
+        }), 400
+
+    except LookupError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 404
+
+    except ValueError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 400
+
+
+@events_bp.delete("/<uuid:event_id>")
+@current_user_required
+def delete_event(user, event_id):
+    try:
+        EventService.delete(event_id, user)
+
+        return jsonify({
+            "success": True,
+            "message": "Event deleted successfully.",
+        }), 200
+
+    except LookupError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 404
+
+    except ValueError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 400
+
+@events_bp.patch("/<uuid:event_id>")
+@current_user_required
+def update_event(user, event_id):
+    from app.api.v1.events.schemas import UpdateEventSchema
+
+    schema = UpdateEventSchema()
+
+    try:
+        data = schema.load(request.get_json() or {})
+
+        if not data:
+            return jsonify({
+                "success": False,
+                "message": "Provide at least one field to update.",
+            }), 400
+
+        event = EventService.update(
+            event_id=event_id,
+            user=user,
+            data=data,
+        )
+
+        return jsonify({
+            "success": True,
+            "message": "Event updated successfully.",
+            "data": {
+                "id": str(event.id),
+                "title": event.title,
+                "slug": event.slug,
+                "description": event.description,
+                "venue": event.venue,
+                "city": event.city,
+                "country": event.country,
+                "category_id": str(event.category_id),
+                "start_date": event.start_date.isoformat(),
+                "end_date": event.end_date.isoformat(),
+                "capacity": event.capacity,
+                "tickets_remaining": event.tickets_remaining,
+                "banner_image": event.banner_image,
+                "latitude": event.latitude,
+                "longitude": event.longitude,
+                "status": event.status.value,
+            },
+        }), 200
+
+    except ValidationError as error:
+        return jsonify({
+            "success": False,
+            "errors": error.messages,
+        }), 400
+
+    except LookupError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 404
+
+    except ValueError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error),
+        }), 400
+
