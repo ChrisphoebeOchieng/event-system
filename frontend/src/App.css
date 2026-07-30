@@ -1091,3 +1091,1045 @@
     justify-content: center;
   }
 }
+
+
+/* Notifications */
+
+.notification-bell {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  color: #5f3448;
+  background: #f8edf2;
+  border: 1px solid #ead4de;
+  border-radius: 50%;
+  place-items: center;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: grid;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  color: #ffffff;
+  background: #7a204b;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  place-items: center;
+}
+
+.mobile-notification-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-notification-link .notification-badge {
+  position: static;
+  border: 0;
+}
+
+.notifications-page {
+  padding: 72px 0 96px;
+}
+
+.notifications-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.notifications-header h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.notifications-header p {
+  max-width: 680px;
+  margin: 0;
+  color: #746a72;
+  line-height: 1.7;
+}
+
+.notifications-alert {
+  margin-bottom: 20px;
+}
+
+.notifications-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 15px 18px;
+  color: #5c2140;
+  background: #f8edf2;
+  border: 1px solid #e6cbd7;
+  border-radius: 18px;
+}
+
+.notifications-summary span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.76rem;
+}
+
+.notifications-summary strong {
+  font-size: 1.15rem;
+}
+
+.notifications-list {
+  display: grid;
+  gap: 16px;
+}
+
+.notification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid rgba(73, 24, 48, 0.1);
+  border-radius: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(50, 17, 34, 0.08);
+}
+
+.notification-card-unread {
+  background: #fff9fc;
+}
+
+.notification-card-read {
+  background: #ffffff;
+  opacity: 0.86;
+}
+
+.notification-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  color: #6c193e;
+  background: #f8edf2;
+  border-radius: 14px;
+  place-items: center;
+}
+
+.notification-icon-payment {
+  color: #145c3c;
+  background: #e7f7ef;
+}
+
+.notification-icon-refund {
+  color: #77520d;
+  background: #fff2cf;
+}
+
+.notification-icon-event {
+  color: #354a7a;
+  background: #edf2ff;
+}
+
+.notification-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.notification-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.notification-title-row h2 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.notification-unread-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  background: #7a204b;
+  border-radius: 50%;
+}
+
+.notification-content > p {
+  margin: 7px 0 10px;
+  color: #6f656d;
+  line-height: 1.6;
+}
+
+.notification-time {
+  color: #938890;
+  font-size: 0.76rem;
+}
+
+.notification-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 13px;
+}
+
+.notification-read-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  cursor: pointer;
+  color: #6c193e;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.notification-read-button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+@media (max-width: 720px) {
+  .notifications-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .notification-card {
+    padding: 18px;
+  }
+
+  .notification-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+/* Polished booking tickets */
+
+.bookings-page-polished {
+  min-height: calc(100vh - 80px);
+  background:
+    radial-gradient(circle at top left, rgba(122, 32, 75, 0.08), transparent 34%),
+    #fcfafb;
+}
+
+.bookings-header-polished {
+  align-items: center;
+}
+
+.bookings-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.booking-ticket-list {
+  display: grid;
+  gap: 28px;
+}
+
+.booking-ticket-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 34%) 1fr;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 22px 60px rgba(50, 17, 34, 0.1);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.booking-ticket-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 72px rgba(50, 17, 34, 0.14);
+}
+
+.booking-ticket-image-wrap {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+}
+
+.booking-ticket-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.booking-ticket-image-wrap::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 8, 14, 0.02),
+    rgba(20, 8, 14, 0.35)
+  );
+}
+
+.booking-ticket-image-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, #4d1731, #8a315a);
+  place-items: center;
+}
+
+.booking-ticket-image-wrap .booking-status {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+.booking-ticket-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.booking-ticket-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.booking-ticket-heading h2 {
+  margin: 9px 0 0;
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  line-height: 1.15;
+}
+
+.booking-ticket-price {
+  flex: 0 0 auto;
+  padding: 14px 16px;
+  text-align: right;
+  background: #faf4f7;
+  border: 1px solid #ead7e0;
+  border-radius: 16px;
+}
+
+.booking-ticket-price span {
+  display: block;
+  margin-bottom: 4px;
+  color: #81757c;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+}
+
+.booking-ticket-price strong {
+  color: #571933;
+  font-size: 1.15rem;
+}
+
+.booking-ticket-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.booking-ticket-meta > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 15px;
+  background: #fcfafb;
+  border: 1px solid rgba(73, 24, 48, 0.08);
+  border-radius: 16px;
+}
+
+.booking-ticket-meta svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #7a204b;
+}
+
+.booking-ticket-meta span {
+  min-width: 0;
+}
+
+.booking-ticket-meta strong,
+.booking-ticket-meta small {
+  display: block;
+}
+
+.booking-ticket-meta strong {
+  color: #3f3038;
+  line-height: 1.4;
+}
+
+.booking-ticket-meta small {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #877b82;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.booking-ticket-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px dashed rgba(73, 24, 48, 0.18);
+}
+
+.booking-no-refund {
+  color: #8a7d84;
+  font-size: 0.82rem;
+}
+
+.booking-ticket-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* Booking details modal */
+
+.booking-details-modal {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 30px 90px rgba(20, 8, 14, 0.32);
+}
+
+.booking-details-hero {
+  height: 250px;
+  overflow: hidden;
+  background: #5b1d3a;
+  border-radius: 28px 28px 0 0;
+}
+
+.booking-details-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.booking-details-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4d1731, #8a315a);
+  place-items: center;
+}
+
+.booking-details-modal-body {
+  padding: 30px;
+}
+
+.booking-details-modal-body h2 {
+  margin: 9px 0 22px;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+.booking-detail-reference-box {
+  padding: 16px 18px;
+  background: #f8edf2;
+  border: 1px solid #e6cbd7;
+  border-radius: 16px;
+}
+
+.booking-detail-reference-box span,
+.booking-detail-reference-box strong {
+  display: block;
+}
+
+.booking-detail-reference-box span {
+  margin-bottom: 5px;
+  color: #81757c;
+  font-size: 0.76rem;
+}
+
+.booking-detail-reference-box strong {
+  color: #5a1935;
+  letter-spacing: 0.06em;
+}
+
+.booking-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.booking-detail-grid > div {
+  display: flex;
+  gap: 11px;
+  padding: 16px;
+  background: #fcfafb;
+  border: 1px solid rgba(73, 24, 48, 0.08);
+  border-radius: 16px;
+}
+
+.booking-detail-grid svg {
+  flex: 0 0 auto;
+  color: #7a204b;
+}
+
+.booking-detail-grid small,
+.booking-detail-grid strong,
+.booking-detail-grid p {
+  display: block;
+}
+
+.booking-detail-grid small {
+  margin-bottom: 4px;
+  color: #8b7e85;
+}
+
+.booking-detail-grid strong {
+  color: #403138;
+}
+
+.booking-detail-grid p {
+  margin: 4px 0 0;
+  color: #81757c;
+  font-size: 0.82rem;
+}
+
+.booking-detail-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.booking-details-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+
+/* Polished refund form */
+
+.refund-modal-polished {
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.refund-modal-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 18px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #682040, #a44270);
+  border-radius: 16px;
+  place-items: center;
+}
+
+.refund-selected-booking {
+  margin-bottom: 18px;
+  padding: 15px 17px;
+  background: #faf4f7;
+  border: 1px solid #ead7e0;
+  border-radius: 16px;
+}
+
+.refund-selected-booking strong,
+.refund-selected-booking span {
+  display: block;
+}
+
+.refund-selected-booking strong {
+  color: #4f1831;
+}
+
+.refund-selected-booking span {
+  margin-top: 5px;
+  color: #877a81;
+  font-size: 0.8rem;
+}
+
+.refund-modal textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 140px;
+  padding: 15px;
+  font: inherit;
+  border: 1px solid #d9c8d0;
+  border-radius: 14px;
+  outline: none;
+}
+
+.refund-modal textarea:focus {
+  border-color: #7a204b;
+  box-shadow: 0 0 0 4px rgba(122, 32, 75, 0.1);
+}
+
+.refund-character-count {
+  display: block;
+  margin-top: 6px;
+  color: #91848b;
+  font-size: 0.74rem;
+  text-align: right;
+}
+
+.refund-processing-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  color: #6f5360;
+  background: #faf6f8;
+  border-radius: 13px;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 900px) {
+  .booking-ticket-card {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-ticket-image-wrap,
+  .booking-ticket-image-fallback {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 700px) {
+  .bookings-header-actions {
+    width: 100%;
+  }
+
+  .bookings-header-actions .button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .booking-ticket-content {
+    padding: 22px;
+  }
+
+  .booking-ticket-heading,
+  .booking-ticket-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .booking-ticket-price {
+    width: 100%;
+    text-align: left;
+  }
+
+  .booking-ticket-meta,
+  .booking-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-ticket-actions,
+  .booking-ticket-actions .button,
+  .booking-details-modal-actions,
+  .booking-details-modal-actions .button {
+    width: 100%;
+  }
+
+  .booking-ticket-actions,
+  .booking-details-modal-actions {
+    flex-direction: column;
+  }
+
+  .booking-ticket-actions .button,
+  .booking-details-modal-actions .button {
+    justify-content: center;
+  }
+
+  .booking-details-hero {
+    height: 190px;
+  }
+
+  .booking-details-modal-body {
+    padding: 24px 20px;
+  }
+}
+
+
+/* Polished refund history */
+
+.refund-history-page {
+  min-height: calc(100vh - 80px);
+  padding: 72px 0 96px;
+  background:
+    radial-gradient(circle at top right, rgba(122, 32, 75, 0.08), transparent 32%),
+    #fcfafb;
+}
+
+.refund-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.refund-history-header h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.refund-history-header p {
+  max-width: 680px;
+  margin: 0;
+  color: #746a72;
+  line-height: 1.7;
+}
+
+.refund-history-alert {
+  margin-bottom: 22px;
+}
+
+.refund-history-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.refund-history-summary > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 14px 38px rgba(50, 17, 34, 0.06);
+}
+
+.refund-summary-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  color: #6c193e;
+  background: #f8edf2;
+  border-radius: 15px;
+  place-items: center;
+}
+
+.refund-history-summary small,
+.refund-history-summary strong {
+  display: block;
+}
+
+.refund-history-summary small {
+  margin-bottom: 4px;
+  color: #84777e;
+}
+
+.refund-history-summary strong {
+  color: #45152d;
+  font-size: 1.45rem;
+}
+
+.refund-history-list {
+  display: grid;
+  gap: 26px;
+}
+
+.refund-history-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.1);
+  border-radius: 26px;
+  box-shadow: 0 22px 60px rgba(50, 17, 34, 0.09);
+}
+
+.refund-history-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.refund-history-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.refund-history-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  color: #ffffff;
+  background: linear-gradient(135deg, #63203f, #a64570);
+  border-radius: 16px;
+  place-items: center;
+}
+
+.refund-history-heading h2 {
+  margin: 8px 0 6px;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.refund-history-heading p {
+  margin: 0;
+  color: #81757c;
+}
+
+.refund-status-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 24px 0;
+  padding: 16px 18px;
+  color: #5f4351;
+  background: #faf4f7;
+  border: 1px solid #ead7e0;
+  border-radius: 16px;
+}
+
+.refund-status-message strong {
+  line-height: 1.5;
+}
+
+.refund-status-message span {
+  flex: 0 0 auto;
+  color: #8b7d84;
+  font-size: 0.78rem;
+}
+
+.refund-progress {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto;
+  align-items: center;
+  margin: 28px 0;
+}
+
+.refund-progress-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.45;
+}
+
+.refund-progress-step > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  color: #756971;
+  background: #eee8eb;
+  border-radius: 50%;
+  place-items: center;
+}
+
+.refund-progress-step strong,
+.refund-progress-step small {
+  display: block;
+}
+
+.refund-progress-step strong {
+  color: #51434a;
+  font-size: 0.84rem;
+}
+
+.refund-progress-step small {
+  margin-top: 2px;
+  color: #8f8389;
+  font-size: 0.7rem;
+}
+
+.refund-progress-step.active {
+  opacity: 1;
+}
+
+.refund-progress-step.active > span {
+  color: #ffffff;
+  background: #7a204b;
+}
+
+.refund-progress-line {
+  height: 3px;
+  margin: 0 12px;
+  background: #e8dfe3;
+  border-radius: 999px;
+}
+
+.refund-progress-line.active {
+  background: #7a204b;
+}
+
+.refund-progress-rejected .refund-progress-step:nth-of-type(2) > span {
+  background: #a13449;
+}
+
+.refund-progress-rejected .refund-progress-line.active {
+  background: #a13449;
+}
+
+.refund-history-details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.refund-history-details > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 15px;
+  background: #fcfafb;
+  border: 1px solid rgba(73, 24, 48, 0.08);
+  border-radius: 15px;
+}
+
+.refund-history-details svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #7a204b;
+}
+
+.refund-history-details small,
+.refund-history-details strong {
+  display: block;
+}
+
+.refund-history-details small {
+  margin-bottom: 4px;
+  color: #8a7d84;
+  font-size: 0.72rem;
+}
+
+.refund-history-details strong {
+  overflow-wrap: anywhere;
+  color: #47383f;
+  font-size: 0.86rem;
+  text-transform: capitalize;
+}
+
+.refund-history-reason,
+.refund-history-admin-note {
+  padding: 17px 18px;
+  border-radius: 16px;
+}
+
+.refund-history-reason {
+  background: #fcfafb;
+  border: 1px solid rgba(73, 24, 48, 0.08);
+}
+
+.refund-history-admin-note {
+  margin-top: 14px;
+  background: #f4edf1;
+  border: 1px solid #e4d0da;
+}
+
+.refund-history-reason span,
+.refund-history-admin-note span {
+  display: block;
+  margin-bottom: 7px;
+  color: #7d6e76;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.refund-history-reason p,
+.refund-history-admin-note p {
+  margin: 0;
+  color: #5e5057;
+  line-height: 1.65;
+}
+
+.refund-history-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(73, 24, 48, 0.17);
+}
+
+@media (max-width: 900px) {
+  .refund-history-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .refund-history-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .refund-progress {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .refund-progress-line {
+    width: 3px;
+    height: 24px;
+    margin: 0 0 0 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .refund-history-header,
+  .refund-history-card-header,
+  .refund-status-message,
+  .refund-history-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .refund-history-details {
+    grid-template-columns: 1fr;
+  }
+
+  .refund-history-card {
+    padding: 21px;
+  }
+
+  .refund-history-heading {
+    width: 100%;
+  }
+
+  .refund-history-footer .button {
+    width: 100%;
+    justify-content: center;
+  }
+}

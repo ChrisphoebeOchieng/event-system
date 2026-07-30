@@ -15,6 +15,7 @@ import Login from "../pages/Login";
 import MyBookings from "../pages/MyBookings";
 import MyEvents from "../pages/MyEvents";
 import MyRefunds from "../pages/MyRefunds";
+import Notifications from "../pages/Notifications";
 import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
 import VendorDashboard from "../pages/VendorDashboard";
@@ -30,6 +31,17 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute
+              allowedRoles={["attendee", "organizer", "vendor", "admin"]}
+            >
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/bookings"

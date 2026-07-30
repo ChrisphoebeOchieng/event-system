@@ -5,6 +5,8 @@ from datetime import datetime, timezone
 from app.database import db
 from app.models.booking import Booking, BookingStatus
 from app.models.payment import Payment, PaymentMethod, PaymentStatus
+from app.models.notification import NotificationType
+from app.api.v1.notifications.service import NotificationService
 
 
 class PaymentService:
@@ -57,6 +59,21 @@ class PaymentService:
         booking.status = BookingStatus.CONFIRMED
 
         db.session.add(payment)
+        db.session.flush()
+
+        NotificationService.create(
+            user_id=user.id,
+            title="Payment confirmed",
+            message=(
+                f"Payment for booking {booking.booking_reference} "
+                f"was completed successfully. Your tickets for "
+                f"{booking.event.title} are now confirmed."
+            ),
+            notification_type=NotificationType.PAYMENT,
+            event_id=booking.event_id,
+            booking_id=booking.id,
+        )
+
         db.session.commit()
 
         return payment

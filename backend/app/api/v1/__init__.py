@@ -1,3 +1,4 @@
+from app.api.v1.notifications.routes import notifications_bp
 from flask import Blueprint
 
 from app.api.v1.auth.routes import auth_bp
@@ -29,3 +30,4 @@ api_v1.register_blueprint(payments_bp)
 api_v1.register_blueprint(dashboard_bp)
 api_v1.register_blueprint(vendors_bp)
 api_v1.register_blueprint(refunds_bp)
+api_v1.register_blueprint(notifications_bp)

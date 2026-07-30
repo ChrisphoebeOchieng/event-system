@@ -4,6 +4,8 @@ from app.database import db
 from app.models.booking import Booking, BookingStatus
 from app.models.payment import PaymentStatus
 from app.models.refund import Refund, RefundStatus
+from app.models.notification import NotificationType
+from app.api.v1.notifications.service import NotificationService
 
 
 class RefundService:
@@ -70,6 +72,22 @@ class RefundService:
         )
 
         db.session.add(refund)
+        db.session.flush()
+
+        NotificationService.create(
+            user_id=user.id,
+            title="Refund request received",
+            message=(
+                f"Your refund request for booking "
+                f"{booking.booking_reference} has been submitted "
+                "and is awaiting administrator review."
+            ),
+            notification_type=NotificationType.REFUND,
+            event_id=booking.event_id,
+            booking_id=booking.id,
+            refund_id=refund.id,
+        )
+
         db.session.commit()
 
         return refund
@@ -125,6 +143,43 @@ class RefundService:
             data.get("admin_note", "").strip()
             if data.get("admin_note")
             else None
+        )
+
+        status_messages = {
+            RefundStatus.APPROVED: (
+                "Refund approved",
+                (
+                    f"Your refund request for booking "
+                    f"{refund.booking.booking_reference} was approved."
+                ),
+            ),
+            RefundStatus.REJECTED: (
+                "Refund rejected",
+                (
+                    f"Your refund request for booking "
+                    f"{refund.booking.booking_reference} was rejected."
+                ),
+            ),
+            RefundStatus.COMPLETED: (
+                "Refund completed",
+                (
+                    f"Your refund for booking "
+                    f"{refund.booking.booking_reference} has been "
+                    "completed."
+                ),
+            ),
+        }
+
+        title, message = status_messages[requested_status]
+
+        NotificationService.create(
+            user_id=refund.user_id,
+            title=title,
+            message=message,
+            notification_type=NotificationType.REFUND,
+            event_id=refund.booking.event_id,
+            booking_id=refund.booking_id,
+            refund_id=refund.id,
         )
 
         db.session.commit()

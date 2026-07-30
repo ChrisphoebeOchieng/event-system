@@ -1,6 +1,7 @@
 from app.models.booking import Booking, BookingStatus
 from app.models.category import Category
 from app.models.event import Event
+from app.models.notification import Notification, NotificationType
 from app.models.payment import Payment, PaymentMethod, PaymentStatus
 from app.models.refund import Refund, RefundStatus
 from app.models.ticket_type import TicketType
@@ -11,6 +12,8 @@ __all__ = [
     "User",
     "Category",
     "Event",
+    "Notification",
+    "NotificationType",
     "TicketType",
     "Booking",
     "BookingStatus",

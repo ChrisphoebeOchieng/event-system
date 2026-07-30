@@ -6,6 +6,8 @@ from app.database import db
 from app.models.booking import Booking
 from app.models.event import Event
 from app.models.ticket_type import TicketType
+from app.models.notification import NotificationType
+from app.api.v1.notifications.service import NotificationService
 
 
 class BookingService:
@@ -60,6 +62,21 @@ class BookingService:
         ticket.sold_quantity += data["quantity"]
 
         db.session.add(booking)
+        db.session.flush()
+
+        NotificationService.create(
+            user_id=user.id,
+            title="Booking created",
+            message=(
+                f"Your booking {booking.booking_reference} for "
+                f"{event.title} was created. Complete payment to "
+                "confirm your tickets."
+            ),
+            notification_type=NotificationType.BOOKING,
+            event_id=event.id,
+            booking_id=booking.id,
+        )
+
         db.session.commit()
 
         return booking
