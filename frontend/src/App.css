@@ -517,3 +517,165 @@
   color: #746a72;
   line-height: 1.7;
 }
+
+
+/* Admin vendor approvals */
+
+.admin-vendors-page {
+  padding: 72px 0 96px;
+}
+
+.admin-vendors-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 34px;
+}
+
+.admin-vendors-header h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.admin-vendors-header p {
+  max-width: 680px;
+  margin: 0;
+  color: #746a72;
+  line-height: 1.7;
+}
+
+.admin-vendor-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  padding: 16px 18px;
+  color: #5c2140;
+  background: #f8edf2;
+  border: 1px solid #e6cbd7;
+  border-radius: 18px;
+}
+
+.admin-vendor-summary span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+}
+
+.admin-vendor-summary strong {
+  font-size: 1.15rem;
+}
+
+.admin-vendor-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.admin-vendor-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(73, 24, 48, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(50, 17, 34, 0.08);
+}
+
+.admin-vendor-logo {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+  color: #6c193e;
+  background: #f7eaf0;
+}
+
+.admin-vendor-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-vendor-content {
+  padding: 26px;
+}
+
+.admin-vendor-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.admin-vendor-title h2 {
+  margin: 0 0 8px;
+}
+
+.admin-vendor-title > div > span {
+  color: #7a6f77;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+.vendor-status-approved,
+.vendor-status-pending {
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.vendor-status-approved {
+  color: #145c3c;
+  background: #e4f7ed;
+}
+
+.vendor-status-pending {
+  color: #77520d;
+  background: #fff2cf;
+}
+
+.admin-vendor-content > p {
+  margin: 20px 0;
+  color: #746a72;
+  line-height: 1.7;
+}
+
+.admin-vendor-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-bottom: 22px;
+  color: #5f555d;
+  font-size: 0.9rem;
+}
+
+.admin-vendor-actions {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 760px) {
+  .admin-vendors-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-vendor-card {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-vendor-logo {
+    min-height: 190px;
+  }
+
+  .admin-vendor-title {
+    flex-direction: column;
+  }
+
+  .admin-vendor-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}

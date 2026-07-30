@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ProtectedRoute from "../components/ProtectedRoute";
+import AdminVendors from "../pages/AdminVendors";
 import Checkout from "../pages/Checkout";
 import CreateEvent from "../pages/CreateEvent";
 import CreateTicketTypes from "../pages/CreateTicketTypes";
@@ -13,6 +14,7 @@ import Login from "../pages/Login";
 import MyEvents from "../pages/MyEvents";
 import Register from "../pages/Register";
 import Unauthorized from "../pages/Unauthorized";
+import VendorDashboard from "../pages/VendorDashboard";
 
 function AppRoutes() {
   return (
@@ -25,6 +27,24 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+
+        <Route
+          path="/admin/vendors"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminVendors />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/vendor"
+          element={
+            <ProtectedRoute allowedRoles={["vendor", "admin"]}>
+              <VendorDashboard />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/dashboard"

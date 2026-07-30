@@ -4,6 +4,7 @@ from app.models.event import Event
 from app.models.payment import Payment, PaymentMethod, PaymentStatus
 from app.models.ticket_type import TicketType
 from app.models.user import User
+from app.models.vendor_profile import VendorProfile
 
 __all__ = [
     "User",
@@ -15,4 +16,5 @@ __all__ = [
     "Payment",
     "PaymentMethod",
     "PaymentStatus",
+    "VendorProfile",
 ]
